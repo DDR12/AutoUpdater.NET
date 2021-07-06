@@ -208,6 +208,18 @@ namespace AutoUpdaterDotNET
         public static event CheckForUpdateEventHandler CheckForUpdateEvent;
 
         /// <summary>
+        /// A delegate type for when an update is found.
+        /// </summary>
+        /// <param name="args"></param>
+        public delegate void NewUpdateFoundEventHandler(UpdateInfoEventArgs args);
+
+        /// <summary>
+        /// An event that clients can use to be notified whenever an update is found.
+        /// </summary>
+        public static event NewUpdateFoundEventHandler OnNewUpdateFound;
+
+
+        /// <summary>
         ///     A delegate type for hooking up parsing logic.
         /// </summary>
         /// <param name="args">An object containing the AppCast file received from server.</param>
@@ -379,6 +391,9 @@ namespace AutoUpdaterDotNET
 
             args.InstalledVersion = InstalledVersion != null ? InstalledVersion : mainAssembly.GetName().Version;
             args.IsUpdateAvailable = new Version(args.CurrentVersion) > args.InstalledVersion;
+
+            if (args.IsUpdateAvailable && OnNewUpdateFound != null)
+                OnNewUpdateFound(args);
 
             if (!Mandatory)
             {
