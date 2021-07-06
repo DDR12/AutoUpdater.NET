@@ -81,13 +81,26 @@ namespace AutoUpdaterDotNET
         {
             if (string.IsNullOrEmpty(_args.ChangelogURL))
             {
-                var reduceHeight = labelReleaseNotes.Height + webBrowser.Height;
-                labelReleaseNotes.Hide();
                 webBrowser.Hide();
-                Height -= reduceHeight;
+
+                var entries = _args.ChangeLogEntries;
+                if (entries == null || entries.Length == 0)
+                {
+                    labelReleaseNotes.Hide();
+                    releaseNotesBulletPoints.Hide();
+
+                }
+                else
+                {
+                    releaseNotesBulletPoints.Clear();
+                    for (int i = 0; i < entries.Length; i++)
+                        releaseNotesBulletPoints.Items.Add(entries[i].Value);
+                }
+
             }
             else
             {
+                releaseNotesBulletPoints.Hide();
                 if (null != AutoUpdater.BasicAuthChangeLog)
                 {
                     webBrowser.Navigate(_args.ChangelogURL, "", null,

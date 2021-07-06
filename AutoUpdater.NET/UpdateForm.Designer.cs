@@ -39,6 +39,7 @@ namespace AutoUpdaterDotNET
             this.buttonRemindLater = new System.Windows.Forms.Button();
             this.pictureBoxIcon = new System.Windows.Forms.PictureBox();
             this.buttonSkip = new System.Windows.Forms.Button();
+            this.releaseNotesBulletPoints = new System.Windows.Forms.ListView();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxIcon)).BeginInit();
             this.SuspendLayout();
             // 
@@ -95,11 +96,21 @@ namespace AutoUpdaterDotNET
             this.buttonSkip.UseVisualStyleBackColor = true;
             this.buttonSkip.Click += new System.EventHandler(this.ButtonSkipClick);
             // 
+            // releaseNotesBulletPoints
+            // 
+            resources.ApplyResources(this.releaseNotesBulletPoints, "releaseNotesBulletPoints");
+            this.releaseNotesBulletPoints.HideSelection = false;
+            this.releaseNotesBulletPoints.HoverSelection = true;
+            this.releaseNotesBulletPoints.Name = "releaseNotesBulletPoints";
+            this.releaseNotesBulletPoints.UseCompatibleStateImageBehavior = false;
+            this.releaseNotesBulletPoints.View = System.Windows.Forms.View.List;
+            // 
             // UpdateForm
             // 
             this.AcceptButton = this.buttonUpdate;
             resources.ApplyResources(this, "$this");
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.releaseNotesBulletPoints);
             this.Controls.Add(this.pictureBoxIcon);
             this.Controls.Add(this.labelReleaseNotes);
             this.Controls.Add(this.labelDescription);
@@ -131,6 +142,6 @@ namespace AutoUpdaterDotNET
         private System.Windows.Forms.Label labelDescription;
         private System.Windows.Forms.Label labelReleaseNotes;
         private System.Windows.Forms.PictureBox pictureBoxIcon;
-
+        private System.Windows.Forms.ListView releaseNotesBulletPoints;
     }
 }

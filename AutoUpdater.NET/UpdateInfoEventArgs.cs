@@ -49,6 +49,10 @@ namespace AutoUpdaterDotNET
             set => _changelogURL = value;
         }
 
+        [XmlElement("changelogentries")]
+        public ChangeLogEntry[] ChangeLogEntries { get; set; }
+
+
         /// <summary>
         ///     Returns newest version of the application available to download.
         /// </summary>
@@ -93,7 +97,17 @@ namespace AutoUpdaterDotNET
             return url;
         }
     }
-
+    /// <summary>
+    /// A changelog text entry.
+    /// </summary>
+    public class ChangeLogEntry
+    {
+        /// <summary>
+        /// Value of the entry.
+        /// </summary>
+        [XmlElement]
+        public string Value { get; set; }
+    }
     /// <summary>
     ///     Mandatory class to fetch the XML values related to Mandatory field.
     /// </summary>
